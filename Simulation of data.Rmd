@@ -34,7 +34,7 @@ Age_90_over<-runif(N*0.010, min = 90, max = 110)
 #This is the simulated Age data
 Age_all<-c(Age_0_18, Age_19_49, Age_50_89, Age_90_over)
 # Shuffle the data
-ShAge_all<-sample(Age_all)
+Age<-sample(Age_all)
 
 ```
 
@@ -45,8 +45,8 @@ ShAge_all<-sample(Age_all)
 ```{r}
 set.seed(233)
 #Gender
-gender<-c("Female","Male")
-Gender_all<-sample(gender, N, replace = T)
+gender_types<-c("Female","Male")
+Gender<-sample(gender_types, N, replace = T)
 ```
 
 # District
@@ -59,7 +59,7 @@ set.seed(304)
 District<-sample(1:124, N, replace = T)
 ```
 
-# Supporting Political party
+# Political party
 
 (4) We referenced the results of election in 2019 and will simulate according to the vote share in Ontario.[@citeElection]
 
@@ -104,8 +104,8 @@ PoliticalP_supported<-sample(Poli_Parties,N,prob = c(0.414, 0.332, 0.168, 0.062,
 ```{r}
 set.seed(302)
 #Education level
-Edu_levels<-c("Bachelor or higher","University below bachelor's", "College diploma","Apprenticeship or other","High school","No certificate, diploma or degree")
-Edu_level_all<-sample(Edu_levels, N, prob = c(0.285, 0.031, 0.224, 0.108, 0.237, 0.115),replace = T)
+Edu_level_types<-c("Bachelor or higher","University below bachelor's", "College diploma","Apprenticeship or other","High school","No certificate, diploma or degree")
+Edu_level<-sample(Edu_level_types, N, prob = c(0.285, 0.031, 0.224, 0.108, 0.237, 0.115),replace = T)
 ```
 
 # Income
@@ -130,10 +130,30 @@ Now we combine all variables together to for a new data frame, then sample from 
 ```{r}
 set.seed(305)
 #Combine together
-All_together.df<-tibble(ShAge_all, Gender_all, PoliticalP_supported, Edu_level_all, Income, District)
+All_together.df<-tibble(Age, Gender, PoliticalP_supported, Edu_level, Income, District)
 #Sampling, using SRS, randomly pick from the data frame.
 sample_selcet_rows<-sample(N,10000)
 sample_dataset<-All_together.df[sample_selcet_rows,]
+```
+
+
+# Simulation
+
+By using tidyverse and R functions and references of several real-world data-sets, we acquired a sample data set for further estimation and analysis.
+
+```{r}
+glimpse(sample_dataset)
+```
+
+Firstly we filter out people that is under 18, who is not eligible to vote for election.
+```{r}
+Sample_clean<-sample_dataset %>% filter(Age>=18)
+sample_size<-nrow(Sample_clean)
+```
+
+Then, we look at the vote share in the remaining voters:
+```{r}
+
 ```
 
 
