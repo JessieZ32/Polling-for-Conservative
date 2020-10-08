@@ -1,36 +1,60 @@
 ---
-title: "Monthly Polling Updates for Conservative"
-author: "Yijie Zhao, Yuze Kang, Shuyu Duan, Rachel Oh"
+title: "Male......Voters Prefer to Vote for Conservative"
+author: "Group 9 - Yijie Zhao, Yuze Kang, Shuyu Duan & Rachel Oh"
 bibliography: "references.bib"
-date: "06/10/2020"
+date: "October 7, 2020"
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
 ```
 
-## R Markdown
+# *Executive Summary*
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>. 
+1) the task (including specifying the client and the focus);
+2) what was done;
+3) what was found;
+4) why this matters;
+5) some weaknesses; and
+6) areas for future work.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
+# *Introduction*
+
+background/Senario
+· polling company works for Conservative
+· show monthly polling updates
+
+Full code and data supporting this analysis is available at: GitHub Link
+
+# *Survey Methodology*
+
+SRS
+
+# *Results*
+
+balabala
+
+# *Discussion*
+
+## simulation
+
+```{r}
+# generate
+
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+# *Appendices*
 
-# reference
+survey screenshot
+
+
+# *reference*
 
 
 
