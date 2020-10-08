@@ -22,12 +22,13 @@ We should have total 6 variables obtained from the results of survey.
 ```{r}
 # Size of population(Number of simulations)
 N<-100000
+set.seed(538)
 # Age
 # We assume in each age group, ages appears at equal probability, so it follows a uniform distribution.
 Age_0_18<-runif(N* 0.21, min = 0, max = 18)
-Age_19_49<-runif(N*0.411, min = 19, max = 49)
+Age_19_49<-runif(N*0.41, min = 19, max = 49)
 Age_50_89<-runif(N*0.37, min = 50, max = 89)
-Age_90_over<-runif(N*0.009, min = 90, max = 110)
+Age_90_over<-runif(N*0.010, min = 90, max = 110)
 #This is the simulated Age data
 Age_all<-c(Age_0_18, Age_19_49, Age_50_89, Age_90_over)
 # Shuffle the data
@@ -40,9 +41,10 @@ ShAge_all<-sample(Age_all)
 (2)For Gender, we assume the ratio of female and male is 1:1.
 
 ```{r}
+set.seed(233)
 #Gender
 gender<-c("Female","Male")
-Gender_all<-sample(gender,N,replace = T)
+Gender_all<-sample(gender, N, replace = T)
 ```
 
 #District
@@ -50,6 +52,7 @@ Gender_all<-sample(gender,N,replace = T)
 (3) For district the person is living in, there are total 124 districts in Ontario, we assume each person has the equal probability to live in any district.
 
 ```{r}
+set.seed(304)
 #District
 District<-sample(1:124, N, replace = T)
 ```
@@ -73,6 +76,7 @@ District<-sample(1:124, N, replace = T)
 *OTH: 0.4%
 
 ```{r}
+set.seed(347)
 #Political Party supported
 #Simulate according to the past vote share
 Poli_Parties<-c("LIB","CON","NDP","GRN","IND","PP","OTH")
@@ -96,6 +100,7 @@ PoliticalP_supported<-sample(Poli_Parties,N,prob = c(0.414, 0.332, 0.168, 0.062,
 *No certificate, diploma or degree	11.5%
 
 ```{r}
+set.seed(302)
 #Education level
 Edu_levels<-c("Bachelor or higher","University below bachelor's", "College diploma","Apprenticeship or other","High school","No certificate, diploma or degree")
 Edu_level_all<-sample(Edu_levels, N, prob = c(0.285, 0.031, 0.224, 0.108, 0.237, 0.115),replace = T)
@@ -104,4 +109,32 @@ Edu_level_all<-sample(Edu_levels, N, prob = c(0.285, 0.031, 0.224, 0.108, 0.237,
 # Income
 
 (6)We simulate income in the same way we simulate age.
+
+```{r}
+set.seed(303)
+#Income
+Income_1<-runif(N*0.2, min = 0, max = 19000)
+Income_2<-runif(N*0.2, min = 19001, max=24000)
+Income_3<-runif(N*0.2, min = 24001, max = 37000)
+Income_4<-runif(N*0.2, min = 37001, max = 56000)
+Income_5<-runif(N*0.2, min = 56001, max = 65000)
+
+#2018
+Income_under_20000<- runif(N*0.268, min = 0, max = 19999)
+Income_20000_75000<- runif(N*0.547, min = 20000, max = 74999)
+Income_75000_over<- runif(N*0.185, min = 75000, max = 250001)
+Income_all<-c(Income_under_20000, Income_20000_75000, Income_75000_over)
+#shuffle
+Income<-sample(Income_all)
+```
+
+Now we combine together
+
+```{r}
+set.seed(305)
+All_together.df<-data_frame(ShAge_all, Gender_all, PoliticalP_supported, Edu_level_all, Income, District)
+sample_selcet_rows<-sample(N,20000)
+sample_dataset<-All_together.df[sample_selcet_rows,]
+```
+
 
