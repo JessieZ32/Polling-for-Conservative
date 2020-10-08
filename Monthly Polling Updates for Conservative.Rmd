@@ -32,25 +32,16 @@ All the code and data supporting this analysis is available at: https://github.c
 
 # *Survey Methodology*
 
-To achieve the aims of our report, we need to collect data first. Our target population is all the eligible voters of Ontario, i.e., any at least 18-year-old Canadian citizen without deprived of civil right whose residential address is located in Ontario. And our sampling population is whom we can possibly reach out among the target population. For data collection, we first design an appropriate survey for voters of Ontario, including all information, or say, variables we are interested in, through SurveyMonkey. The link and a screenshot of our survey is available at the appendix of this report. 
+To achieve the aims of our report, we need to collect data first. Our target population is all the eligible voters of Ontario, i.e., any at least 18-year-old Canadian citizen without deprived of civil right whose residential address is located in Ontario. And our sampling population is whom we can possibly reach out among the target population. For data collection, we first designed an appropriate anonymous survey for voters of Ontario, including all information, or say, variables we are interested in, through SurveyMonkey. The link and a screenshot of our survey is available at the appendix of this report. 
 
-We collaborate with some big Canadian communications and media companies, Rogers, Bell and Telus, as they own  
+We collaborated with some big Canadian communications and media companies, Rogers, Bell and Telus, as they own lists of customers' email addresses which may cover most of our target population (i.e., our frame). Through their email system, we massively sent emails with our survey URL link in. Both in content of email and survey, we promised to keep all the collected data residential, with respect to the protection of participants' privacy, and asked for ignorance if people who received this email weren't not eligible voters. Then we collected all the data from respondents as samples. Through the whole process, the sampling method that we used is simple random sampling without replacement (SRSWOR). We hope sample can be chosen with an equal probability, making the collected sample could represent target population with as less bias as possible. 
 
-We use Simple Random Sampling Without Replacement (SRSWOR). We hope voters can be chosen based on an equal probability, so the sample could represent the group without bias.
-
-How to reach respondents: online survey How? We can work with a reality company or government to get email addresses and send emails to conduct surveys. 
-Apply coupons for completing the survey?
-Cost: calculated by Survey Monkey
-About non-response: Some people do not check their email regularly, maybe we can send the survey again or do an offline interview in order to receive as much response as possible. 
-Respondents’ Privacy: send a consent form to each respondent to debrief the use of the data and guarantee the safety  of these personal information.
-Delete the personal information of the respondents after finish collecting the survey
-
-
+As for the costs of sampling process, we only need to calculate the wage we pay for employees who did the job of sending emails. Doing a survey through some kind of modern media can cost less that survey face-to-face. However, there exists some errors due to our sampling design. For example, delivering the survey to voters online can definitely cause non-response error. There is no way to ensure them checking email regularly and doing survey willingly. But we can increase the rate of response by setting up some rewards, for example, we can set a raffle page and all the respondents shall do a lucky raffle once they submit the survey. Hence, we can reduce the influence of non-response error as much as possible.
 
 
 # *Results*
 
-balabala @citetidyverse
+
 
 
 # *Discussion*
