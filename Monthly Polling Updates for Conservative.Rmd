@@ -23,11 +23,13 @@ library(tidyverse)
 
 # *Introduction*
 
-background/Senario
-· polling company works for Conservative
-· show monthly polling updates
+In Canadian federal election, Ontario has always been an important battleground. As the most populous province of Canada, Ontario counts 121 federal electoral districts (i.e., ridings in Canadian English) holding voting rights and has 121 seats, more than one third in the House of Commons. Therefore, polling of Ontario voters has a strategic significance for all ambiguous political parties, especially for Conservative. However, does it definitely lead Conservative to winning federal government by leading the poll before federal election? Absolutely not. Even a higher voting rate can not ensure a final winning, as a fact shows in 2019 Canadian federal election that Conservative lost government while gained more votes than Liberal. So both votes and seats matter. 
 
-Full code and data supporting this analysis is available at: GitHub Link
+There is a variety of reasons causing the consequence that polling is not as much reliable as we think, interior or exterior, to affect each voter's decision on the election date. Although
+
+
+
+The code and data supporting this analysis is available at: https://github.com/JessieZ32/Polling-for-Conservative.
 
 # *Survey Methodology*
 
@@ -40,12 +42,6 @@ balabala
 # *Discussion*
 
 ## simulation
-
-```{r}
-# generate
-
-```
-
 
 
 
