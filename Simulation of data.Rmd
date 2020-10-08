@@ -1,6 +1,7 @@
 ---
 title: "Simulation of data"
-author: "YK"
+author: "Yuze Kang, Yijie Zhao, Shuyu Duan, Rachel Oh"
+bibliography: "references.bib"
 date: "2020/10/8"
 output: pdf_document
 ---
@@ -14,10 +15,11 @@ library("tidyverse")
 # Data Simulation
 
 We should have total 6 variables obtained from the results of survey.
+We used R and tidyverse to simulate data for estimation and analysis.[@citetidyverse;@citeR] Some real data from the past are referenced in order to make the simulation results closer to the real situation.
 
 ## Age
 
-(1) For age, from Statistics Canada we've known the number of people of each age group in Ontario population, in this case we divide population into 4 groups(0--18, 19--49, 50--89, 90 and over), and by calculation the percentages are 21%, 41.1%, 37% and 0.9% respectively.
+(1) For age, from Statistics Canada we've known the number of people of each age group in Ontario population, in this case we divide population into 4 groups(0--18, 19--49, 50--89, 90 and over), and by calculation the percentages are 21%, 41%, 37% and 1% respectively.[see @citeAge]
 
 ```{r}
 # Size of population(Number of simulations)
@@ -32,22 +34,30 @@ Age_90_over<-runif(N*0.010, min = 90, max = 110)
 #This is the simulated Age data
 Age_all<-c(Age_0_18, Age_19_49, Age_50_89, Age_90_over)
 # Shuffle the data
-ShAge_all<-sample(Age_all)
+Age<-sample(Age_all)
 
 ```
 
+<<<<<<< HEAD
 ## Gender
+=======
+# Gender
+>>>>>>> 734f58badff99b42ca0bb9355cb4f2802ecc8417
 
 (2)For Gender, we assume the ratio of female and male is 1:1.
 
 ```{r}
 set.seed(233)
 #Gender
-gender<-c("Female","Male")
-Gender_all<-sample(gender, N, replace = T)
+gender_types<-c("Female","Male")
+Gender<-sample(gender_types, N, replace = T)
 ```
 
+<<<<<<< HEAD
 ## District
+=======
+# District
+>>>>>>> 734f58badff99b42ca0bb9355cb4f2802ecc8417
 
 (3) For district the person is living in, there are total 124 districts in Ontario, we assume each person has the equal probability to live in any district.
 
@@ -57,9 +67,13 @@ set.seed(304)
 District<-sample(1:124, N, replace = T)
 ```
 
+<<<<<<< HEAD
 ## Supporting Political party
+=======
+# Political party
+>>>>>>> 734f58badff99b42ca0bb9355cb4f2802ecc8417
 
-(4) We referenced the results of election in 2019 and will simulate according to the vote share in Ontario.
+(4) We referenced the results of election in 2019 and will simulate according to the vote share in Ontario.[@citeElection]
 
 *LIB: 41.4%
 
@@ -85,7 +99,7 @@ PoliticalP_supported<-sample(Poli_Parties,N,prob = c(0.414, 0.332, 0.168, 0.062,
 
 ## Education Level
 
-(5)We referenced from the 2016 education attainment status in Canada, and will simulate according to this.
+(5)We referenced from the 2016 education attainment status in Canada, and will simulate according to this.[see @citeEdu]
 
 *Bachelor's degree or higher: 28.5%
 
@@ -102,39 +116,57 @@ PoliticalP_supported<-sample(Poli_Parties,N,prob = c(0.414, 0.332, 0.168, 0.062,
 ```{r}
 set.seed(302)
 #Education level
-Edu_levels<-c("Bachelor or higher","University below bachelor's", "College diploma","Apprenticeship or other","High school","No certificate, diploma or degree")
-Edu_level_all<-sample(Edu_levels, N, prob = c(0.285, 0.031, 0.224, 0.108, 0.237, 0.115),replace = T)
+Edu_level_types<-c("Bachelor or higher","University below bachelor's", "College diploma","Apprenticeship or other","High school","No certificate, diploma or degree")
+Edu_level<-sample(Edu_level_types, N, prob = c(0.285, 0.031, 0.224, 0.108, 0.237, 0.115),replace = T)
 ```
 
 ## Income
 
-(6)We simulate income in the same way we simulate age.
+(6)We simulate income in the same way we simulate age. We referenced an after-taxed income results in 2018, from Statistics Canada.[@citeIncome]
 
 ```{r}
 set.seed(303)
-#Income
-Income_1<-runif(N*0.2, min = 0, max = 19000)
-Income_2<-runif(N*0.2, min = 19001, max=24000)
-Income_3<-runif(N*0.2, min = 24001, max = 37000)
-Income_4<-runif(N*0.2, min = 37001, max = 56000)
-Income_5<-runif(N*0.2, min = 56001, max = 65000)
-
-#2018
-Income_under_20000<- runif(N*0.268, min = 0, max = 19999)
-Income_20000_75000<- runif(N*0.547, min = 20000, max = 74999)
-Income_75000_over<- runif(N*0.185, min = 75000, max = 250001)
-Income_all<-c(Income_under_20000, Income_20000_75000, Income_75000_over)
+#2018 after taxed
+Income_under_15000<- runif(N*0.2, min = 0, max = 14999)
+Income_15000_24999<- runif(N*0.2, min = 15000, max = 24999)
+Income_25000_39999<- runif(N*0.2, min = 25000, max = 39999)
+Income_40000_59999<- runif(N*0.2, min = 40000, max = 59999)
+Income_60000_over<- runif(N*0.2, min = 60000, max = 500000)
+Income_all<-c(Income_under_15000, Income_15000_24999,Income_25000_39999,Income_40000_59999,Income_60000_over)
 #shuffle
 Income<-sample(Income_all)
 ```
 
-Now we combine together
+Now we combine all variables together to for a new data frame, then sample from these observations.
 
 ```{r}
 set.seed(305)
-All_together.df<-data_frame(ShAge_all, Gender_all, PoliticalP_supported, Edu_level_all, Income, District)
-sample_selcet_rows<-sample(N,20000)
+#Combine together
+All_together.df<-tibble(Age, Gender, PoliticalP_supported, Edu_level, Income, District)
+#Sampling, using SRS, randomly pick from the data frame.
+sample_selcet_rows<-sample(N,10000)
 sample_dataset<-All_together.df[sample_selcet_rows,]
 ```
 
 
+# Simulation
+
+By using tidyverse and R functions and references of several real-world data-sets, we acquired a sample data set for further estimation and analysis.
+
+```{r}
+glimpse(sample_dataset)
+```
+
+Firstly we filter out people that is under 18, who is not eligible to vote for election.
+```{r}
+Sample_clean<-sample_dataset %>% filter(Age>=18)
+sample_size<-nrow(Sample_clean)
+```
+
+Then, we look at the vote share in the remaining voters:
+```{r}
+
+```
+
+
+# References
