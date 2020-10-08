@@ -11,11 +11,11 @@ knitr::opts_chunk$set(echo = TRUE)
 library("tidyverse")
 ```
 
-## Data Simulation
+# Data Simulation
 
 We should have total 6 variables obtained from the results of survey.
 
-# Age
+## Age
 
 (1) For age, from Statistics Canada we've known the number of people of each age group in Ontario population, in this case we divide population into 4 groups(0--18, 19--49, 50--89, 90 and over), and by calculation the percentages are 21%, 41.1%, 37% and 0.9% respectively.
 
@@ -36,7 +36,7 @@ ShAge_all<-sample(Age_all)
 
 ```
 
-#Gender
+## Gender
 
 (2)For Gender, we assume the ratio of female and male is 1:1.
 
@@ -47,7 +47,7 @@ gender<-c("Female","Male")
 Gender_all<-sample(gender, N, replace = T)
 ```
 
-#District
+## District
 
 (3) For district the person is living in, there are total 124 districts in Ontario, we assume each person has the equal probability to live in any district.
 
@@ -57,7 +57,7 @@ set.seed(304)
 District<-sample(1:124, N, replace = T)
 ```
 
-#Supporting Political party
+## Supporting Political party
 
 (4) We referenced the results of election in 2019 and will simulate according to the vote share in Ontario.
 
@@ -83,7 +83,7 @@ Poli_Parties<-c("LIB","CON","NDP","GRN","IND","PP","OTH")
 PoliticalP_supported<-sample(Poli_Parties,N,prob = c(0.414, 0.332, 0.168, 0.062, 0.004, 0.016, 0.004), replace = T)
 ```
 
-# Education Level
+## Education Level
 
 (5)We referenced from the 2016 education attainment status in Canada, and will simulate according to this.
 
@@ -106,7 +106,7 @@ Edu_levels<-c("Bachelor or higher","University below bachelor's", "College diplo
 Edu_level_all<-sample(Edu_levels, N, prob = c(0.285, 0.031, 0.224, 0.108, 0.237, 0.115),replace = T)
 ```
 
-# Income
+## Income
 
 (6)We simulate income in the same way we simulate age.
 
