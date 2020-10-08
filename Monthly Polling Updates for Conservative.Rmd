@@ -25,19 +25,32 @@ library(tidyverse)
 
 In Canadian federal election, Ontario has always been an important battleground. As the most populous province of Canada, Ontario counts 121 federal electoral districts (i.e., ridings in Canadian English) holding voting rights and has 121 seats, more than one third in the House of Commons. Therefore, polling of Ontario voters has a strategic significance for all ambiguous political parties, especially for Conservative. However, does it definitely lead Conservative to winning federal government by leading the poll before federal election? Absolutely not. Even a higher voting rate can not ensure a final winning, as a fact shows in 2019 Canadian federal election that Conservative lost government while gained more votes than Liberal. So both votes and seats matter. 
 
-There is a variety of reasons causing the consequence that polling is not as much reliable as we think, interior or exterior, to affect each voter's decision on the election date. Although
+There is a variety of interior or exterior factors that affects each voter's decision on the election date and causes the consequence that polling is not as much reliable as we think. In the following context, we decide to focus on some common factors of voters themselves, such as age, sex, education and income level, to find the relation to their preferences of political parties. In addition to polling updates in October, we try to figure out if there is any common features of voters who prefer to vote Conservative in the federal election, for Conservative Party's reference. Based on that, no matter the voters are rational or irrational on that big date, we might use this observation to help Conservative stabilize their current voters and win over more voters of Ontario, to win more seats in such an important province. Besides, we discuss the weakness and limitation contained in our whole analyzing process for readers' reference and for improvement next time.
 
+All the code and data supporting this analysis is available at: https://github.com/JessieZ32/Polling-for-Conservative.
 
-
-The code and data supporting this analysis is available at: https://github.com/JessieZ32/Polling-for-Conservative.
 
 # *Survey Methodology*
 
-SRS
+To achieve the aims of our report, we need to collect data first. Our target population is all the eligible voters of Ontario, i.e., any at least 18-year-old Canadian citizen without deprived of civil right whose residential address is located in Ontario. And our sampling population is whom we can possibly reach out among the target population. For data collection, we first design an appropriate survey for voters of Ontario, including all information, or say, variables we are interested in, through SurveyMonkey. The link and a screenshot of our survey is available at the appendix of this report. 
+
+We collaborate with some big Canadian communications and media companies, Rogers, Bell and Telus, as they own  
+
+We use Simple Random Sampling Without Replacement (SRSWOR). We hope voters can be chosen based on an equal probability, so the sample could represent the group without bias.
+
+How to reach respondents: online survey How? We can work with a reality company or government to get email addresses and send emails to conduct surveys. 
+Apply coupons for completing the survey?
+Cost: calculated by Survey Monkey
+About non-response: Some people do not check their email regularly, maybe we can send the survey again or do an offline interview in order to receive as much response as possible. 
+Respondents’ Privacy: send a consent form to each respondent to debrief the use of the data and guarantee the safety  of these personal information.
+Delete the personal information of the respondents after finish collecting the survey
+
+
+
 
 # *Results*
 
-balabala
+balabala @citetidyverse
 
 # *Discussion*
 
@@ -47,7 +60,7 @@ balabala
 
 # *Appendices*
 
-survey screenshot
+survey screenshot @XXX
 
 
 # *reference*
