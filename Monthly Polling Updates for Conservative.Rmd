@@ -1,5 +1,5 @@
 ---
-title: "Male......Voters Prefer to Vote for Conservative"
+title: "Which Kind of Voters Prefer to Vote Conservative"
 author: "Group 9 - Yijie Zhao, Yuze Kang, Shuyu Duan & Rachel Oh"
 bibliography: "references.bib"
 date: "October 7, 2020"
@@ -10,6 +10,7 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
+
 
 # *Executive Summary*
 
@@ -32,6 +33,7 @@ The surveys are randomly sent to a considerable amount of people, in order to ob
 
 In Canadian federal election, Ontario has always been an important battleground. As the most populous province of Canada, Ontario counts 121 federal electoral districts (i.e., ridings in Canadian English) holding voting rights and has 121 seats, more than one third in the House of Commons. Therefore, polling of Ontario voters has a strategic significance for all ambiguous political parties, especially for Conservative. However, does it definitely lead Conservative to winning federal government by leading the poll before federal election? Absolutely not. Even a higher voting rate can not ensure a final winning, as a fact shows in 2019 Canadian federal election that Conservative lost government while gained more votes than Liberal. So both votes and seats matter. 
 
+
 There is a variety of interior or exterior factors that affects each voter's decision on the election date and causes the consequence that polling is not as much reliable as we think. In the following context, we decide to focus on some common factors of voters themselves, such as age, sex, education and income level, to find the relation to their preferences of political parties. In addition to polling updates in October, we try to figure out if there is any common features of voters who prefer to vote Conservative in the federal election, for Conservative Party's reference. Based on that, no matter the voters are rational or irrational on that big date, we might use this observation to help Conservative stabilize their current voters and win over more voters of Ontario, to win more seats in such an important province. Besides, we discuss the weakness and limitation contained in our whole analyzing process for readers' reference and for improvement next time.
 
 All the code and data supporting this analysis is available at: https://github.com/JessieZ32/Polling-for-Conservative.
@@ -44,6 +46,7 @@ To achieve the aims of our report, we need to collect data first. Our target pop
 We collaborated with some big Canadian communications and media companies, Rogers, Bell and Telus, as they own lists of customers' email addresses which may cover most of our target population (i.e., our frame). Through their email system, we massively sent emails with our survey URL link in. Both in content of email and survey, we promised to keep all the collected data residential, with respect to the protection of participants' privacy, and asked for ignorance if people who received this email weren't not eligible voters. Then we collected all the data from 7958 respondents as samples. Through the whole process, the sampling method that we used is simple random sampling without replacement (SRSWOR). We hope sample can be chosen with an equal probability, making the collected sample could represent target population with as less bias as possible. 
 
 As for the costs of sampling process, we only need to calculate the wage we pay for employees who did the job of sending emails. Doing a survey through some kind of modern media can cost less that survey face-to-face. However, there exists some errors due to our sampling design. For example, delivering the survey to voters online can definitely cause non-response error. There is no way to ensure them checking email regularly and doing survey willingly. But we can increase the rate of response by setting up some rewards, for example, we can set a raffle page and all the respondents shall do a lucky raffle once they submit the survey. Hence, we can reduce the influence of non-response error as much as possible.
+
 
 ```{r include=FALSE}
 # Size of population (Number of simulations)
@@ -111,6 +114,7 @@ sample_size<-nrow(Sample_clean)
 ```
 
 
+
 # *Results* & *Discussion*
 
 Among 7958 respondents who are eligible voters in Ontario, we collect all their information from the survey and combine them into a data set file. We set up several variables of which we think matter polling or voting behavior, such as age, sex, personal annual income level, education level and federal electoral districts voters live. In the following context, we use software R and R packages like tidyverse and ggplot2 to analyze the data of those variables we collected from survey respondents and draw some tables and graphs to visualize the data [@citeR; @citetidyverse; @citeggplot2].
@@ -119,34 +123,46 @@ Among 7958 respondents who are eligible voters in Ontario, we collect all their 
 ## I. October Polling Updates for Canadian Political Parties
 
 [Note]:
+
 **·** LIB represents Liberal Party of Canada;
+
 **·** CON represents Conservative Party of Canada;
+
 **·** NDP represents New Democratic Party;
+
 **·** GRN represents Green Party of Canada;
+
 **·** IND represents Independent;
+
 **·** PP represents People's Party;
+
 **·** OTH represents Bloc Québécois and other parties or individual candidates.
 
+
 The table below shows the ratio of polling in Ontario for Canadian Political Parties updated in October from the sample data we collect. 
+
 ```{r echo=FALSE}
 # Polling for each political party
 Sample_clean %>% group_by(PoliticalP_supported) %>%
   summarise(Polling=n()/sample_size)
 ```
+
 From the table, we can see that Conservative has a polling ratio of over 30% and Liberal is still in a moderately dominant position among polling in Ontario as usual. Except Liberal, around 17% polling ratio of New Democratic should also be cared about. The rest parties' polling accounts for less than 0.1%.
 
 
 ## II. Ontarian Voters in Different Age pro Conservative
 
 We draw a Kernel density plot for voters in different age who support Conservative in Ontario.
+
 ```{r echo=FALSE}
 # Age distribution of supporters of Conservative
 Sample_clean %>% filter(PoliticalP_supported == "CON") %>% 
   ggplot(aes(x=Age))+
-  labs(title="Age Distribution of Conservative Supporters")+
+  labs(title="Figure 1. Age Distribution of Conservative Supporters")+
   geom_density()
 ```
-This density plot indicates the distribution of respondents who prefer to vote Conservative. It is showed that this distribution is a multi-modal mode, with an obvious peak at the age of 30 and two other inapparent peaks at the age of near 60 and 75 respectively. The overall distribution is right-skewed. The maximum is the first peak of age 30. The density has two sudden falls: the first is after age 35 to 55 and the second is after age 85. From age 18 to 30, the density rises rapidly. From age 55 to 85, the density is pretty stable.  
+
+From figure 1, this density plot indicates the distribution of respondents who prefer to vote Conservative. It is showed that this distribution is a multi-modal mode, with an obvious peak at the age of 30 and two other inapparent peaks at the age of near 60 and 75 respectively. The overall distribution is right-skewed. The maximum is the first peak of age 30. The density has two sudden falls: the first is after age 35 to 55 and the second is after age 85. From age 18 to 30, the density rises rapidly. From age 55 to 85, the density is pretty stable.  
 
 
 ## III. Male or Female's Preferences for Political Parties
@@ -157,30 +173,39 @@ For male and female voters, we draw a horizontal bar plot to present the prefere
 # Sex ratio
 Sample_clean %>% ggplot(aes(x=Sex,fill=PoliticalP_supported))+
   geom_bar(position="dodge")+
+  ggtitle("Figure 2. Male or Female's Preferences for Political Parties")+
   coord_flip()
 ```
 
-The ratios of male and female to the total sample we collect are almost equal. From the bar plot above, we can find that male and female show similar preference for each party. There are slight differences in supporting Liberal and People's Party between male and female. Both male and female prefer the most to vote Liberal and then Conservative. 
+From figure 2, the ratios of male and female to the total sample we collect are almost equal. From the bar plot above, we can find that male and female show similar preference for each party. There are slight differences in supporting Liberal and People's Party between male and female. Both male and female prefer the most to vote Liberal and then Conservative. 
 
 
 ## IV. Polling Associated to Education Level of Respondents
 
 We draw a vertical bar plot to represent the polling for different parties of groups with different education level and we concern about the data for Conservative mostly.
+
 ```{r echo=FALSE}
 # Education Level
 Sample_clean %>% ggplot(aes(x=Edu_level,fill=PoliticalP_supported))+
   geom_bar(position="dodge")+
+  ggtitle("Figure 3. Polling Associated to Education Level of Respondents")+
   theme(axis.text.x=element_text(angle=45,hjust=1))
 ```
-From the graph above, we can see that among all the supporters for Conservative, the largest proportion is respondents with the highest level of education, like holding a bachelor degree or higher level degree.  
+
+From the figure 3 above, we can see that among all the supporters for Conservative, the largest proportion is respondents with the highest level of education, like holding a bachelor degree or higher level degree.  
 
 
 ## V. The Association Between Average Income and Polling for Conservative 
 
 We collect the annual after-tax incomes from our respondents. We also question them which federal electoral districts of Ontario they are living in. After we calculate the following two variables:
+
 **·** the average after-tax annual incomes of different federal electoral districts;
+
 **·** the polling for Conservative in different federal electoral districts;
+
 we draw a scatter plot for these two variables.
+
+
 ```{r echo=FALSE}
 # Annual ncome,federal electoral district and vote for Conservative
 # Calculate average annual income for each district
@@ -206,14 +231,22 @@ for (i in 1:121) {
 Mean_Income_and_votes<-as.data.frame(cbind(Mean_Income,Vote_num))
 Mean_Income_and_votes %>% 
   ggplot(aes(x=Average_income,y=Vote_num))+
+  ggtitle("Figure 4. The Association Between Average Income and Polling for Conservative")+
   geom_point()
 ```
-Actually, we could not find a association between the average after-tax annual incomes and the polling for Conservative in different federal electoral districts. These 121 points are almost uniformly distributed near the center part of the whole graph.
+
+Actually from figure 4, we could not find a association between the average after-tax annual incomes and the polling for Conservative in different federal electoral districts. These 121 points are almost uniformly distributed near the center part of the whole graph.
 
 
 ## VI. Discussion
 
 
+### Discussion about Polling
+
+
+
+
+### Discussion about Shortcomings
 
 
 Online surveys can actually miss out a considerable proportion of people who do not often use computers or the internet, for example the elderly, or people with heavy financial burden. Maybe we can reach the respondents by both online surveys and offline interviews, or in another combined way, to receive responses from all groups of people in the population. 
