@@ -14,21 +14,24 @@ library(tidyverse)
 
 # *Executive Summary*
 
-Petit Poll, the polling company that has been cooperating with Conservative, updates the status of polling monthly, in Ontario, Canada. By sending online surveys to emails of vast voting age population in Ontario, not only opinions but also characteristics of these eligible voters are acquired and analyzed, for further estimation and reference. From voter's age, gender, preference of political party, to their income and education level, we have discovered that...
+Petit Poll, the polling company that has been cooperating with Conservative, updates the status of polling monthly, in Ontario, Canada. By sending online surveys to emails of vast voting age population in Ontario, not only opinions but also characteristics of these eligible voters are acquired and analyzed, for further estimation and reference. 
 
+From voter's age, gender, preference of political party, to their income and education level, we have discovered things:
+
+(1) Conservative still has less advantages of polling in Ontario than Liberal.
+
+(2) For voters pro Conservative, age 30 group is most stable and accounts for the largest proportion among different ages.
+
+(3) Male and female show similar preferences for voting different political parties.
+
+(4) Voters with education level of a bachelor or higher degree are most positive in voting. For Conservative, the largest proportion is voters holding a bachelor degree or higher level degree.
+
+(5) There is no evidence that exists a association between the average after-tax annual incomes and the polling for Conservative in different federal electoral districts. 
+
+As for weaknesses about our sampling process, the surveys are randomly sent to a considerable amount of people, in order to obtain unbiased results that can represent the voting population in Ontario, still we've missed out a lot of responses which is reasonable as not everyone can be reached in time on the Internet even in this time. In future, we can improve our sampling work by increasing the sample size (i.e., number of respondents). For example, we can send several notifications to remind the respondents or apply rewards for them.
+
+    
  
-
-
-The surveys are randomly sent to a considerable amount of people, in order to obtain unbiased results that can represent the voting population in Ontario, still we've missed out a lot of responses which is reasonable as not everyone can be reached in time on the Internet even in this time. 
-
-1) the task (including specifying the client and the focus);
-2) what was done;
-3) what was found;
-4) why this matters;
-5) some weaknesses; and
-6) areas for future work.
-
-
 # *Introduction*
 
 In Canadian federal election, Ontario has always been an important battleground. As the most populous province of Canada, Ontario counts 121 federal electoral districts (i.e., ridings in Canadian English) holding voting rights and has 121 seats, more than one third in the House of Commons. Therefore, polling of Ontario voters has a strategic significance for all ambiguous political parties, especially for Conservative. However, does it definitely lead Conservative to winning federal government by leading the poll before federal election? Absolutely not. Even a higher voting rate can not ensure a final winning, as a fact shows in 2019 Canadian federal election that Conservative lost government while gained more votes than Liberal. So both votes and seats matter. 
@@ -238,25 +241,33 @@ Mean_Income_and_votes %>%
 Actually from figure 4, we could not find a association between the average after-tax annual incomes and the polling for Conservative in different federal electoral districts. These 121 points are almost uniformly distributed near the center part of the whole graph.
 
 
-## VI. Discussion
+## VI. Discussion about Shortcomings
 
 
-### Discussion about Polling
+(1) Online surveys can actually miss out a considerable proportion of people who do not often use computers or the internet. For example the elderly, or people with heavy financial burden. Maybe we can reach the respondents by both online surveys and offline interviews, or in another combined way, to receive responses from all groups of people in the population. 
 
 
+(2) Simple Random Sampling might be biased when the sample size is not large enough. In this case the number of responses we collected is not ideally large enough to display all characteristics of the population in Ontario.
 
 
-### Discussion about Shortcomings
-
-
-Online surveys can actually miss out a considerable proportion of people who do not often use computers or the internet, for example the elderly, or people with heavy financial burden. Maybe we can reach the respondents by both online surveys and offline interviews, or in another combined way, to receive responses from all groups of people in the population. 
-Simple Random Sampling might be biased when the sample size is not large enough. In this case the number of responses we collected is not ideally large enough to display all characteristics of the population in Ontario.
-Even if a person’s personal information is secured, he or she may not be fully honest when filling the questionnaire (For example, some people are very sensitive when it comes to their income). Intentionally or Consciously, this might always leads to some influences to our results of survey.
+(3) Even if a person’s personal information is secured, he or she may not be fully honest when filling the questionnaire (For example, some people are very sensitive when it comes to their income). Intentionally or Consciously, this might always leads to some influences to our results of survey.
 
 
 
 # *Appendices*
 
+## Survey
+
+See survey at: https://zh.surveymonkey.com/r/C2SY3MD.
+
+
+```{r echo=FALSE, fig.cap="Survey"}
+knitr::include_graphics("/cloud/project/survey.PNG")
+```
+
+## Simulation
+
+See rmd file of simulation at: https://github.com/JessieZ32/Polling-for-Conservative/blob/main/Simulation%20of%20data.Rmd.
 
 
 # *reference*
