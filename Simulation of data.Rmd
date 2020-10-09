@@ -1,8 +1,8 @@
 ---
-title: "Simulation of data"
-author: "Yuze Kang, Yijie Zhao, Shuyu Duan, Rachel Oh"
+title: "Simulation of Data"
+author: "Group 9 - Yuze Kang, Yijie Zhao, Shuyu Duan & Rachel Oh"
 bibliography: "references.bib"
-date: "2020/10/8"
+date: "October 7, 2020"
 output: pdf_document
 ---
 
@@ -12,22 +12,24 @@ knitr::opts_chunk$set(echo = TRUE)
 library("tidyverse")
 ```
 
-## Data Simulation
+# Data Simulation
 
 We should have total 6 variables obtained from the results of survey.
-We used R and tidyverse to simulate data for estimation and analysis.[@citetidyverse;@citeR] Some real data from the past are referenced in order to make the simulation results closer to the real situation.
 
-# Age
+We used R and tidyverse to simulate data for estimation and analysis [@citetidyverse; @citeR]. Some real data from the past are referenced in order to make the simulation results closer to the real situation.
 
-(1) For age, from Statistics Canada we've known the number of people of each age group in Ontario population, in this case we divide population into 4 groups(0--18, 19--49, 50--89, 90 and over), and by calculation the percentages are 21%, 41%, 37% and 1% respectively.[see @citeAge]
+
+## Age
+
+For age, from Statistics Canada, we've known the number of people in each age group among Ontario population, in this case we divide population into 4 groups(0--18, 19--49, 50--89, 90 and over), and by calculation the percentages are 21%, 41%, 37% and 1% respectively.[@citeAge]
 
 ```{r}
-# Size of population(Number of simulations)
+# Size of population (Number of simulations)
 N<-100000
 set.seed(538)
 # Age
 # We assume in each age group, ages appears at equal probability, so it follows a uniform distribution.
-Age_0_18<-runif(N* 0.21, min = 0, max = 18)
+Age_0_18 <-runif(N*0.21, min = 0, max = 18)
 Age_19_49<-runif(N*0.41, min = 19, max = 49)
 Age_50_89<-runif(N*0.37, min = 50, max = 89)
 Age_90_over<-runif(N*0.010, min = 90, max = 110)
@@ -38,30 +40,33 @@ Age<-sample(Age_all)
 
 ```
 
-# Gender
 
-(2)For Gender, we assume the ratio of female and male is 1:1.
+## Sex
+
+For sex, we assume the ratio of female and male is 1:1.
 
 ```{r}
 set.seed(233)
-#Gender
-gender_types<-c("Female","Male")
-Gender<-sample(gender_types, N, replace = T)
+# Sex
+Sex_types<-c("Female","Male")
+Sex<-sample(Sex_types, N, replace = T)
 ```
 
-# District
 
-(3) For district the person is living in, there are total 124 districts in Ontario, we assume each person has the equal probability to live in any district.
+## Federal Electoral District
+
+For district the person is living in, there are total 121 federal electoral districts in Ontario, we assume each person has the equal probability to live in any district.
 
 ```{r}
 set.seed(304)
-#District
-District<-sample(1:121, N, replace = T)
+# District
+FEDistrict<-sample(1:121, N, replace = T)
 ```
 
-# Political party
 
-(4) We referenced the results of election in 2019 and will simulate according to the vote share in Ontario.[@citeElection]
+## Political party
+
+We referenced the results of election in 2019 and will simulate according to the vote share in Ontario.[@citeElection]
 
 *LIB: 41.4%
 
@@ -79,15 +84,16 @@ District<-sample(1:121, N, replace = T)
 
 ```{r}
 set.seed(347)
-#Political Party supported
-#Simulate according to the past vote share
+# Political Party supported
+# Simulate according to the past vote share
 Poli_Parties<-c("LIB","CON","NDP","GRN","IND","PP","OTH")
 PoliticalP_supported<-sample(Poli_Parties,N,prob = c(0.414, 0.332, 0.168, 0.062, 0.004, 0.016, 0.004), replace = T)
 ```
 
-# Education Level
 
-(5)We referenced from the 2016 education attainment status in Canada, and will simulate according to this.[see @citeEdu]
+## Education Level
+
+We referenced from the 2016 education attainment status in Canada, and will simulate according to this.[@citeEdu]
 
 *Bachelor's degree or higher: 28.5%
 
@@ -103,14 +109,15 @@ PoliticalP_supported<-sample(Poli_Parties,N,prob = c(0.414, 0.332, 0.168, 0.062,
 
 ```{r}
 set.seed(302)
-#Education level
+# Education level
 Edu_level_types<-c("Bachelor or higher","University below bachelor's", "College diploma","Apprenticeship or other","High school","No certificate, diploma or degree")
 Edu_level<-sample(Edu_level_types, N, prob = c(0.285, 0.031, 0.224, 0.108, 0.237, 0.115),replace = T)
 ```
 
-# Income
 
-(6)We simulate income in the same way we simulate age. We referenced an after-taxed income results in 2018, from Statistics Canada.[@citeIncome]
+## Annual income
+
+We simulate income in the same way we simulate age. We referenced an after-taxed income results in 2018, from Statistics Canada.[@citeIncome]
 
 ```{r}
 set.seed(303)
@@ -125,63 +132,21 @@ Income_all<-c(Income_under_15000, Income_15000_24999,Income_25000_39999,Income_4
 Income<-sample(Income_all)
 ```
 
+
+## Data
+
 Now we combine all variables together to for a new data frame, then sample from these observations.
 
 ```{r}
 set.seed(305)
 #Combine together
-All_together.df<-tibble(Age, Gender, PoliticalP_supported, Edu_level, Income, District)
+All_together.df<-tibble(Age, Sex, PoliticalP_supported, Edu_level, Income, FEDistrict)
 #Sampling, using SRS, randomly pick from the data frame.
 sample_selcet_rows<-sample(N,10000)
 sample_dataset<-All_together.df[sample_selcet_rows,]
 #Then we filter out people that is under 18, who is not eligible to vote for election.
 Sample_clean<-sample_dataset %>% filter(Age>=18)
 sample_size<-nrow(Sample_clean)
-```
-
-# Results and Discussion
-
-
-```{r echo=FALSE}
-#Vote_share for each political party
-Sample_clean %>% group_by(PoliticalP_supported) %>% summarise(vote_share=n()/sample_size)
-```
-
-```{r echo=FALSE}
-#Age Distribution of supporters of Conservative
-Sample_clean %>% filter(PoliticalP_supported == "CON") %>% ggplot(aes(x =Age))+labs(title = "Age Distribution for Conservative Supporters")+geom_density()
-```
-
-```{r echo=FALSE}
-#Sex ratio
-Sample_clean %>% ggplot(aes(x=Gender,fill=PoliticalP_supported))+geom_bar(position = "dodge")+coord_flip()
-```
-
-```{r echo=FALSE}
-#Education Level
-Sample_clean %>% ggplot(aes(x=Edu_level, fill=PoliticalP_supported))+geom_bar(position = "dodge")+theme(axis.text.x = element_text(angle = 45, hjust = 1))
-```
-
-```{r echo=FALSE}
-#Income,District and vote
-#Calculate average income for each district
-Sample_only_con<-Sample_clean %>% filter(PoliticalP_supported=="CON")
-Average_income<-c()
-for (index in 1:121) {
-  samp_distrct<-Sample_only_con %>% filter(District==index)
-  Average_income[index]=sum(samp_distrct$Income)/nrow(samp_distrct)
-}
-order_num<-c(1:121)
-Mean_Income<-cbind(order_num, Average_income)
-
-#Calculate number of votes
-Vote_num<-c()
-for (i in 1:121) {
-  vote_district<-Sample_only_con %>% filter(District==i)
-  Vote_num[i]=nrow(vote_district)
-}
-Mean_Income_and_votes<-as.data.frame(cbind(Mean_Income,Vote_num))
-Mean_Income_and_votes %>% ggplot(aes(x=Average_income,y=Vote_num))+geom_point()
 ```
 
 
