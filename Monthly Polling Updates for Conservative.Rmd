@@ -41,11 +41,7 @@ As for the costs of sampling process, we only need to calculate the wage we pay 
 
 # *Results*
 
-```{r}
-Sample_clean<-sample_dataset %>% filter(Age>=18)
-Sample_clean
-```
-
+Among 7958 respondents who are eligible voters in Ontario, we collect all their information from the survey and combine them into a data set file. We use software R and R packages like tidyverse and ggplot2 [@citeR; @citetidyverse; @citeggplot2] to analyze the data we collected.
 
 I.
 ```{r echo=FALSE}
@@ -111,13 +107,10 @@ Mean_Income_and_votes %>%
 
 # *Discussion*
 
-## simulation
-
 
 
 # *Appendices*
 
-survey screenshot @XXX
 
 
 # *reference*
