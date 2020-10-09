@@ -37,7 +37,6 @@ Age_90_over<-runif(N*0.010, min = 90, max = 110)
 Age_all<-c(Age_0_18, Age_19_49, Age_50_89, Age_90_over)
 # Shuffle the data
 Age<-sample(Age_all)
-
 ```
 
 
