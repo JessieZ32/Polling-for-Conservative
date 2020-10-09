@@ -98,16 +98,22 @@ The ratios of male and female to the total sample we collect are almost equal. F
 
 ## IV. Polling Associated to Education Level of Respondents
 
-We draw a vertical bar plot to represent 
+We draw a vertical bar plot to represent the polling for different parties of groups with different education level and we concern about the data for Conservative mostly.
 ```{r echo=FALSE}
 # Education Level
 Sample_clean %>% ggplot(aes(x=Edu_level,fill=PoliticalP_supported))+
   geom_bar(position="dodge")+
   theme(axis.text.x=element_text(angle=45,hjust=1))
 ```
+From the graph above, we can see that among all the supporters for Conservative, the largest proportion is respondents with the highest level of education, like holding a bachelor degree or higher level degree.  
 
 
-## V. 
+## V. The Association Between Average Income and Polling for Conservative 
+
+We collect the annual after-tax incomes from our respondents. We also question them which federal electoral districts of Ontario they are living in. After we calculate the following two variables:
+**·** the average after-tax annual incomes of different federal electoral districts;
+**·** the polling for Conservative in different federal electoral districts;
+we draw a scatter plot for these two variables.
 ```{r echo=FALSE}
 # Annual ncome,federal electoral district and vote for Conservative
 # Calculate average annual income for each district
@@ -135,6 +141,10 @@ Mean_Income_and_votes %>%
   ggplot(aes(x=Average_income,y=Vote_num))+
   geom_point()
 ```
+Actually, we could not find a association between the average after-tax annual incomes and the polling for Conservative in different federal electoral districts. These 121 points are almost uniformly distributed near the center part of the whole graph.
+
+
+## 
 
 
 Online surveys can actually miss out a considerable proportion of people who do not often use computers or the internet, for example the elderly, or people with heavy financial burden. Maybe we can reach the respondents by both online surveys and offline interviews, or in another combined way, to receive responses from all groups of people in the population. 
