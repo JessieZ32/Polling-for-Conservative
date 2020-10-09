@@ -96,6 +96,18 @@ Income_60000_over<- runif(N*0.2, min = 60000, max = 500000)
 Income_all<-c(Income_under_15000, Income_15000_24999,Income_25000_39999,Income_40000_59999,Income_60000_over)
 #shuffle
 Income<-sample(Income_all)
+
+
+#Combine together
+set.seed(305)
+
+All_together.df<-tibble(Age, Sex, PoliticalP_supported, Edu_level, Income, FEDistrict)
+#Sampling, using SRS, randomly pick from the data frame.
+sample_selcet_rows<-sample(N,10000)
+sample_dataset<-All_together.df[sample_selcet_rows,]
+#Then we filter out people that is under 18, who is not eligible to vote for election.
+Sample_clean<-sample_dataset %>% filter(Age>=18)
+sample_size<-nrow(Sample_clean)
 ```
 
 
@@ -140,12 +152,14 @@ This density plot indicates the distribution of respondents who prefer to vote C
 ## III. Male or Female's Preferences for Political Parties
 
 For male and female voters, we draw a horizontal bar plot to present the preferences for parties of different sex.
+
 ```{r echo=FALSE}
 # Sex ratio
 Sample_clean %>% ggplot(aes(x=Sex,fill=PoliticalP_supported))+
   geom_bar(position="dodge")+
   coord_flip()
 ```
+
 The ratios of male and female to the total sample we collect are almost equal. From the bar plot above, we can find that male and female show similar preference for each party. There are slight differences in supporting Liberal and People's Party between male and female. Both male and female prefer the most to vote Liberal and then Conservative. 
 
 
